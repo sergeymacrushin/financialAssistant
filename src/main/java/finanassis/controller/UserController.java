@@ -39,6 +39,7 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPage");
         modelAndView.addObject("user", user);
+
         return modelAndView;
     }
 

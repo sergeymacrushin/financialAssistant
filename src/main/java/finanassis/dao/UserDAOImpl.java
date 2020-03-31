@@ -17,7 +17,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+   @SuppressWarnings("unchecked")
     public List<User> allUsers() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from User").list();
@@ -32,7 +32,12 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void delete(User user) {
         Session session = sessionFactory.getCurrentSession();
-        session.delete(user);
+        session.createQuery("delete from Cost where id_user="+user.getId()).
+                executeUpdate();
+        session.createQuery("delete from Revenue where id_user="+user.getId()).
+                executeUpdate();
+        session.createQuery("delete from User where id="+user.getId()).
+                executeUpdate();
     }
 
     @Override
@@ -45,5 +50,17 @@ public class UserDAOImpl implements UserDAO {
     public User getById(int id) {
         Session session = sessionFactory.getCurrentSession();
         return session.get(User.class, id);
+    }
+
+    @Override
+    public int getBalance(User user)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        int revenue=(int)session.createQuery("select sum(sum) from Revenue where id_user="+user.
+                getId()).list().get(0);
+        int cost=(int)session.createQuery("select sum(sum) from Cost where id_user="+user.
+                getId()).list().get(0);
+        return (revenue-cost);
+
     }
 }

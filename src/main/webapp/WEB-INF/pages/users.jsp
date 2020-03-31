@@ -27,6 +27,8 @@
             <td>
                 <a href="/edit/${user.id}">edit</a>
                 <a href="/delete/${user.id}">delete</a>
+                <a href="/costs/${user.id}">costs</a>
+                <a href="/revenues/${user.id}">revenues</a>
             </td>
         </tr>
     </c:forEach>

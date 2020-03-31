@@ -44,4 +44,7 @@ public class UserServiceImpl implements UserService{
     public User getById(int id) {
         return userDAO.getById(id);
     }
+
+    @Transactional
+    public int getBalance(User user){return userDAO.getBalance(user);}
 }
