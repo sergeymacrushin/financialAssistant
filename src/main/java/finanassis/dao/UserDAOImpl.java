@@ -52,15 +52,4 @@ public class UserDAOImpl implements UserDAO {
         return session.get(User.class, id);
     }
 
-    @Override
-    public int getBalance(User user)
-    {
-        Session session = sessionFactory.getCurrentSession();
-        int revenue=(int)session.createQuery("select sum(sum) from Revenue where id_user="+user.
-                getId()).list().get(0);
-        int cost=(int)session.createQuery("select sum(sum) from Cost where id_user="+user.
-                getId()).list().get(0);
-        return (revenue-cost);
-
-    }
 }

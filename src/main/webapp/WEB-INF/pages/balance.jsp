@@ -9,34 +9,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Users</title>
+    <title>Balance</title>
 </head>
 <body>
 
-<h2>Users</h2>
+<h2>balance ${user.fname}</h2>
 <table>
     <tr>
         <th>id</th>
         <th>fname</th>
+        <th>balance</th>
 
     </tr>
-    <c:forEach var="user" items="${usersList}">
         <tr>
             <td>${user.id}</td>
             <td>${user.fname}</td>
-            <td>
-                <a href="/edit/${user.id}">edit</a>
-                <a href="/delete/${user.id}">delete</a>
-                <a href="/costs/${user.id}">costs</a>
-                <a href="/revenues/${user.id}">revenues</a>
-                <a href="/balance/${user.id}">balance</a>
-            </td>
+            <td>${balance}</td>
         </tr>
-    </c:forEach>
 </table>
 
-<h2>Add</h2>
-<c:url value="/add" var="add"/>
-<a href="${add}">Add new user</a>
+<h2></h2>
+<c:url value="/" var="back"/>
+<a href="${back}">Back</a>
 </body>
 </html>

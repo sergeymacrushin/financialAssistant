@@ -1,6 +1,8 @@
 package finanassis.controller;
 
 import finanassis.model.User;
+import finanassis.service.CostService;
+import finanassis.service.RevenueService;
 import finanassis.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,8 @@ import java.util.List;
 @Controller
 public class UserController {
     private UserService userService;
-
+    private CostService costService;
+    private RevenueService revenueService;
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
@@ -72,6 +75,16 @@ public class UserController {
         modelAndView.setViewName("redirect:/");
         User user = userService.getById(id);
         userService.delete(user);
+        return modelAndView;
+    }
+    @RequestMapping(value="/balance/{id}", method = RequestMethod.GET)
+    public ModelAndView balanceUser(@PathVariable("id") int id) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("balance");
+        User user = userService.getById(id);
+        int balance= userService.getBalance(user);
+        modelAndView.addObject("balance", balance);
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
 }
