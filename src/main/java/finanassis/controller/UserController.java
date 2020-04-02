@@ -1,8 +1,6 @@
 package finanassis.controller;
 
 import finanassis.model.User;
-import finanassis.service.CostService;
-import finanassis.service.RevenueService;
 import finanassis.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
