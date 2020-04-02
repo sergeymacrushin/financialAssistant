@@ -20,8 +20,7 @@ import java.util.List;
 @Controller
 public class UserController {
     private UserService userService;
-    private CostService costService;
-    private RevenueService revenueService;
+
     @Autowired
     public void setUserService(UserService userService) {
         this.userService = userService;
